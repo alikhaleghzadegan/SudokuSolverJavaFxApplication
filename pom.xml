@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.khaleghzadegan</groupId>
+    <artifactId>SudokuSolverJavaFxApplication</artifactId>
+    <version>1.0</version>
+    <packaging>pom</packaging>
+
+    <name>Sudoku Solver</name>
+
+    <description>
+        This is a Sudoku Solver project which uses genetic algorithm to solve ordinary Sudoku puzzles.
+        I hope this project will be helpful and enjoyable for others as well.
+    </description>
+
+    <licenses>
+        <license>
+            <comments>
+                Sudoku Solver!
+                Copyright (C) 2020 - Ali Khaleghzadegan
+                This program is free software: you can redistribute it and/or modify
+                it under the terms of the GNU General Public License as published by
+                the Free Software Foundation, either version 3 of the License, or
+                (at your option) any later version.
+                This program is distributed in the hope that it will be useful,
+                but WITHOUT ANY WARRANTY; without even the implied warranty of
+                MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+                GNU General Public License for more details.
+            </comments>
+            <name>GNU GENERAL PUBLIC LICENSE - Version 3</name>
+            <url>https://www.gnu.org/licenses/</url>
+        </license>
+    </licenses>
+
+    <contributors>
+        <contributor>
+            <name>Ali Khaleghzadegan</name>
+            <email>khaleghzadegan1989@gmail.com</email>
+            <url>https://www.linkedin.com/in/ali-khaleghzadegan/</url>
+            <roles>
+                <role>Designer</role>
+                <role>Developer</role>
+                <role>Tester</role>
+                <role>Maintainer</role>
+            </roles>
+        </contributor>
+    </contributors>
+
+    <modules>
+        <module>sudoku.gui</module>
+        <module>sudoku.logic</module>
+    </modules>
+
+
+</project>
