@@ -4,9 +4,55 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.khaleghzadegan</groupId>
+    <parent>
+        <groupId>com.khaleghzadegan</groupId>
+        <artifactId>SudokuSolverJavaFxApplication</artifactId>
+        <version>1.0</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+
     <artifactId>sudoku.logic</artifactId>
     <version>1.0</version>
 
+    <name>Logic Module</name>
+
+    <licenses>
+        <license>
+            <comments>
+                Sudoku Solver!
+                Copyright (C) 2020 - Ali Khaleghzadegan
+                This program is free software: you can redistribute it and/or modify
+                it under the terms of the GNU General Public License as published by
+                the Free Software Foundation, either version 3 of the License, or
+                (at your option) any later version.
+                This program is distributed in the hope that it will be useful,
+                but WITHOUT ANY WARRANTY; without even the implied warranty of
+                MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+                GNU General Public License for more details.
+            </comments>
+            <name>GNU GENERAL PUBLIC LICENSE - Version 3</name>
+            <url>https://www.gnu.org/licenses/</url>
+        </license>
+    </licenses>
+
+    <contributors>
+        <contributor>
+            <name>Ali Khaleghzadegan</name>
+            <email>khaleghzadegan1989@gmail.com</email>
+            <url>https://www.linkedin.com/in/ali-khaleghzadegan/</url>
+            <roles>
+                <role>Designer</role>
+                <role>Developer</role>
+                <role>Tester</role>
+                <role>Maintainer</role>
+            </roles>
+        </contributor>
+    </contributors>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+    </properties>
 
 </project>

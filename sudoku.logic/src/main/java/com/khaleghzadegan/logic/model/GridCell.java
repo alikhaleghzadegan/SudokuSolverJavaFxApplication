@@ -1,5 +1,7 @@
 package com.khaleghzadegan.logic.model;
 
+import com.khaleghzadegan.logic.exception.CanNotChangeFixedCellException;
+
 import java.io.Serializable;
 
 public class GridCell implements Serializable {
@@ -11,15 +13,20 @@ public class GridCell implements Serializable {
         this.cellType = cellType;
     }
 
+    public GridCell(GridCell gridCell) {
+        cellValue = gridCell.getCellValue();
+        cellType = gridCell.getCellType();
+    }
+
     public Integer getCellValue() {
         return cellValue;
     }
 
     public void setCellValue(Integer cellValue) {
-        if (cellType == CellType.CHANGEABLE) {
+        if (cellType.equals(CellType.CHANGEABLE)) {
             this.cellValue = cellValue;
         } else {
-            throw new RuntimeException("ERROR: CELL VALUE IS FIXED AND CAN NOT BE CHANGED!");
+            throw new CanNotChangeFixedCellException("Cell value is fixed and can not be changed!");
         }
     }
 

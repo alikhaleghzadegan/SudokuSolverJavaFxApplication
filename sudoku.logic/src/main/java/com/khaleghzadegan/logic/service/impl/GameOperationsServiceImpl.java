@@ -8,8 +8,7 @@ import java.util.*;
 
 public class GameOperationsServiceImpl implements GameOperationsService {
 
-    private final Random random = new Random();
-
+    private static final Random RANDOM = new Random();
 
     @Override
     public void removeRepetition(SudokuGrid sudokuGrid) {
@@ -45,7 +44,7 @@ public class GameOperationsServiceImpl implements GameOperationsService {
 
 
     private void replaceRepetitiveNumbersWithZeros(GridCell[] gridCellArray) {
-        Integer[] lookupArray = getLookupArray(gridCellArray);
+        int[] lookupArray = getLookupArray(gridCellArray);
         for (int i = 0; i < SudokuGrid.GAME_BOUNDARY; i++) {
             Integer value = gridCellArray[i].getCellValue();
             if (lookupArray[value] > 1 && gridCellArray[i].getCellType() == GridCell.CellType.CHANGEABLE) {
@@ -55,8 +54,8 @@ public class GameOperationsServiceImpl implements GameOperationsService {
         }
     }
 
-    private Integer[] getLookupArray(GridCell[] gridCellArray) {
-        Integer[] lookupArray = new Integer[SudokuGrid.GAME_BOUNDARY + 1];
+    private int[] getLookupArray(GridCell[] gridCellArray) {
+        int[] lookupArray = new int[SudokuGrid.GAME_BOUNDARY + 1];
         for (int i = 0; i < SudokuGrid.GAME_BOUNDARY; i++) {
             Integer value = gridCellArray[i].getCellValue();
             lookupArray[value]++;
@@ -75,7 +74,7 @@ public class GameOperationsServiceImpl implements GameOperationsService {
 
     private Integer getRandomNumberNotIn(GridCell[] gridCellArray) {
         Integer[] availableNumbers = getAllNonZeroIntegersFromOneToMaxNotIn(gridCellArray);
-        int index = random.nextInt(Objects.requireNonNull(availableNumbers).length);
+        int index = RANDOM.nextInt(Objects.requireNonNull(availableNumbers).length);
         return availableNumbers[index];
     }
 
@@ -98,8 +97,7 @@ public class GameOperationsServiceImpl implements GameOperationsService {
         Set<Integer> availableNumbers = new HashSet<>();
         for (int i = 0; i < SudokuGrid.GAME_BOUNDARY; i++) {
             Integer value = gridCellArray[i].getCellValue();
-            if (value != 0)
-                availableNumbers.add(value);
+            if (value != 0) availableNumbers.add(value);
         }
         return availableNumbers;
     }
@@ -138,7 +136,7 @@ public class GameOperationsServiceImpl implements GameOperationsService {
         var result = 0;
         for (int i = 0; i < SudokuGrid.GAME_BOUNDARY; i++) {
             for (int j = i + 1; j < SudokuGrid.GAME_BOUNDARY; j++) {
-                if (array[i] != array[j]) result++;
+                if (!array[i].getCellValue().equals(array[j].getCellValue())) result++;
             }
         }
         return result;
@@ -149,18 +147,19 @@ public class GameOperationsServiceImpl implements GameOperationsService {
         var result = 0;
         for (int i = 0; i < SudokuGrid.GAME_BOUNDARY / 3; i++) {
             for (int j = 0; j < SudokuGrid.GAME_BOUNDARY / 3; j++) {
-                result += getFitnessValueForThreeByThreeSubSquare(i, j, gridCells);
+                GridCell[] array = getFlattenedThreeByThreeSubSquare(i, j, gridCells);
+                result += getFitnessValueFor(array);
             }
         }
         return result;
     }
 
-    private Integer getFitnessValueForThreeByThreeSubSquare(Integer row, Integer column, GridCell[][] gridCells) {
+    private GridCell[] getFlattenedThreeByThreeSubSquare(Integer row, Integer column, GridCell[][] gridCells) {
         GridCell[] array = new GridCell[9];
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < 3; i++) {
             System.arraycopy(gridCells[i + (3 * row)], 3 * column, array, i * 3, 3);
-
-        return getFitnessValueFor(array);
+        }
+        return array;
     }
 
     @Override
@@ -168,7 +167,7 @@ public class GameOperationsServiceImpl implements GameOperationsService {
         final var gridCells1 = sudokuGrid1.getGridCells();
         final var gridCells2 = sudokuGrid2.getGridCells();
         for (int i = 0; i < SudokuGrid.GAME_BOUNDARY; i++) {
-            int temp = random.nextInt(10) + 1;
+            int temp = RANDOM.nextInt(10) + 1;
             if (temp <= 8) {
                 System.arraycopy(gridCells1[i], 0, gridCells2[i], 0, SudokuGrid.GAME_BOUNDARY);
             }
@@ -180,9 +179,9 @@ public class GameOperationsServiceImpl implements GameOperationsService {
         final var gridCells = sudokuGrid.getGridCells();
         for (int i = 0; i < SudokuGrid.GAME_BOUNDARY; i++) {
             for (int j = 0; j < SudokuGrid.GAME_BOUNDARY; j++) {
-                int temp = random.nextInt(10) + 1;
+                int temp = RANDOM.nextInt(10) + 1;
                 if (temp <= 2 && gridCells[i][j].getCellType() == GridCell.CellType.CHANGEABLE)
-                    gridCells[i][j].setCellValue(random.nextInt(SudokuGrid.GAME_BOUNDARY) + 1);
+                    gridCells[i][j].setCellValue(RANDOM.nextInt(SudokuGrid.GAME_BOUNDARY) + 1);
             }
         }
     }

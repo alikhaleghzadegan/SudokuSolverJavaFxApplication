@@ -1,4 +1,4 @@
-package com.khaleghzadegan.gui.component;
+package com.khaleghzadegan.gui.common;
 
 public class Resources {
 

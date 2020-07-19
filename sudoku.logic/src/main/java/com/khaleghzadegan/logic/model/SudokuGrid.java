@@ -5,14 +5,25 @@ import java.io.Serializable;
 public class SudokuGrid implements Serializable {
 
     public static final Integer GAME_BOUNDARY = 9;
-    private GridState gridState;
     private final GridCell[][] gridCells;
+    private GridState gridState;
     private Integer gridFitnessValue;
 
     public SudokuGrid() {
-        this.gridState = GridState.NEW;
+        gridState = GridState.NEW;
         gridFitnessValue = 0;
         gridCells = new GridCell[GAME_BOUNDARY][GAME_BOUNDARY];
+    }
+
+    public SudokuGrid(SudokuGrid sudokuGrid) {
+        gridState = sudokuGrid.getGridState();
+        gridFitnessValue = sudokuGrid.getGridFitnessValue();
+        gridCells = new GridCell[GAME_BOUNDARY][GAME_BOUNDARY];
+        for (int i = 0; i < GAME_BOUNDARY; i++)
+            for (int j = 0; j < GAME_BOUNDARY; j++) {
+                var cell = sudokuGrid.getGridCells()[i][j];
+                gridCells[i][j] = new GridCell(cell);
+            }
     }
 
     public GridState getGridState() {

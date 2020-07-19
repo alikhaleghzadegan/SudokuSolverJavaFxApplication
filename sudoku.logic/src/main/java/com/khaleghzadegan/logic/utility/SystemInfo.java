@@ -5,9 +5,8 @@ import java.util.Map;
 
 public class SystemInfo {
 
-    private static final long kilobytes = 1024;
-    private static final long megabytes = kilobytes * 1024;
-    private static final long gigabytes = megabytes * 1024;
+    private static final long KILOBYTES = 1024;
+    private static final long MEGABYTES = KILOBYTES * 1024;
 
     private SystemInfo() {
     }
@@ -41,15 +40,15 @@ public class SystemInfo {
     }
 
     public static float freeMemoryInMegabytes() {
-        return Runtime.getRuntime().freeMemory() / (float) megabytes;
+        return Runtime.getRuntime().freeMemory() / (float) MEGABYTES;
     }
 
     public static float maxMemoryInMegabytes() {
-        return Runtime.getRuntime().maxMemory() / (float) megabytes;
+        return Runtime.getRuntime().maxMemory() / (float) MEGABYTES;
     }
 
     public static float totalMemoryInMegabytes() {
-        return Runtime.getRuntime().totalMemory() / (float) megabytes;
+        return Runtime.getRuntime().totalMemory() / (float) MEGABYTES;
     }
 
     public static File[] filesystemRoots() {
